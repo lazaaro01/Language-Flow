@@ -1,0 +1,188 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id @default(cuid())
+  email         String   @unique
+  passwordHash  String
+  name          String
+  avatarUrl     String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  levelId       String
+  level         Level    @relation(fields: [levelId], references: [id])
+  currentXp     Int      @default(0)
+  totalXp       Int      @default(0)
+  dailyGoalMinutes Int   @default(30)
+
+  lessonProgress    LessonProgress[]
+  exerciseAttempts  ExerciseAttempt[]
+  flashcards        Flashcard[]
+  conversations     Conversation[]
+  achievements      UserAchievement[]
+  streak            UserStreak?
+  xpTransactions    XpTransaction[]
+}
+
+model Level {
+  id     String @id @default(cuid())
+  name   String @unique
+  minXp  Int
+  maxXp  Int
+
+  users  User[]
+  lessons Lesson[]
+}
+
+model UserStreak {
+  id             String   @id @default(cuid())
+  userId         String   @unique
+  user           User     @relation(fields: [userId], references: [id])
+  currentStreak  Int      @default(0)
+  longestStreak  Int      @default(0)
+  lastActivityAt DateTime @default(now())
+}
+
+model XpTransaction {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  amount    Int
+  source    String
+  createdAt DateTime @default(now())
+}
+
+model Lesson {
+  id          String @id @default(cuid())
+  title       String
+  description String
+  levelId     String
+  module      String
+  order       Int
+
+  level     Level           @relation(fields: [levelId], references: [id])
+  exercises Exercise[]
+  progress  LessonProgress[]
+}
+
+model LessonProgress {
+  id        String   @id @default(cuid())
+  userId    String
+  lessonId  String
+  completed Boolean  @default(false)
+  score     Int      @default(0)
+  updatedAt DateTime @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id])
+  lesson Lesson @relation(fields: [lessonId], references: [id])
+
+  @@unique([userId, lessonId])
+}
+
+model Exercise {
+  id            String @id @default(cuid())
+  lessonId      String
+  type          String
+  question      String
+  options       String?
+  correctAnswer String
+  order         Int
+
+  lesson  Lesson             @relation(fields: [lessonId], references: [id])
+  attempts ExerciseAttempt[]
+}
+
+model ExerciseAttempt {
+  id         String   @id @default(cuid())
+  userId     String
+  exerciseId String
+  answer     String
+  correct    Boolean
+  createdAt  DateTime @default(now())
+
+  user     User     @relation(fields: [userId], references: [id])
+  exercise Exercise @relation(fields: [exerciseId], references: [id])
+}
+
+model Flashcard {
+  id              String   @id @default(cuid())
+  userId          String
+  word            String
+  definition      String
+  exampleSentence String
+  difficulty      String   @default("medium")
+  ease            Float    @default(2.5)
+  interval        Int      @default(0)
+  repetitions     Int      @default(0)
+  nextReview      DateTime @default(now())
+  lastReviewed    DateTime?
+  createdAt       DateTime @default(now())
+
+  user   User              @relation(fields: [userId], references: [id])
+  reviews FlashcardReview[]
+}
+
+model FlashcardReview {
+  id         String   @id @default(cuid())
+  flashcardId String
+  quality    Int
+  reviewedAt DateTime @default(now())
+
+  flashcard Flashcard @relation(fields: [flashcardId], references: [id])
+}
+
+model Conversation {
+  id        String   @id @default(cuid())
+  userId    String
+  title     String
+  scenario  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user     User                @relation(fields: [userId], references: [id])
+  messages ConversationMessage[]
+}
+
+model ConversationMessage {
+  id             String   @id @default(cuid())
+  conversationId String
+  role           String
+  content        String
+  correction     String?
+  suggestion     String?
+  grammarNote    String?
+  createdAt      DateTime @default(now())
+
+  conversation Conversation @relation(fields: [conversationId], references: [id])
+}
+
+model Achievement {
+  id          String @id @default(cuid())
+  title       String
+  description String
+  icon        String
+  xpReward    Int
+  conditionType  String
+  conditionCount Int
+
+  users UserAchievement[]
+}
+
+model UserAchievement {
+  id            String   @id @default(cuid())
+  userId        String
+  achievementId String
+  unlockedAt    DateTime @default(now())
+
+  user        User        @relation(fields: [userId], references: [id])
+  achievement Achievement @relation(fields: [achievementId], references: [id])
+
+  @@unique([userId, achievementId])
+}
