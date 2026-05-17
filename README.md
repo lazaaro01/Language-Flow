@@ -1,160 +1,160 @@
 # LinguaFlow AI
 
-Modern English learning platform with personalized AI-powered conversations, gamified experience, and adaptive exercises.
+Plataforma moderna de aprendizado de inglês com conversas personalizadas por IA, experiência gamificada e exercícios adaptativos.
 
 ## Stack
 
 - **Frontend:** Next.js 15, TypeScript, Tailwind CSS, ShadCN UI, Framer Motion, Zustand, React Query
-- **Backend:** NestJS, TypeScript, Prisma ORM, SQLite (PostgreSQL ready)
-- **Auth:** JWT with refresh tokens (NestJS custom implementation)
-- **AI-ready:** Architecture prepared for OpenAI, Whisper, ElevenLabs integration
+- **Backend:** NestJS, TypeScript, Prisma ORM, SQLite (pronto para PostgreSQL)
+- **Autenticação:** JWT com refresh tokens (implementação personalizada em NestJS)
+- **Preparado para IA:** Arquitetura preparada para integração com OpenAI, Whisper e ElevenLabs
 
-## Features
+## Funcionalidades
 
-| Feature | Description |
+| Funcionalidade | Descrição |
 |---|---|
-| **Auth** | Register, login, JWT with refresh token rotation |
-| **Dashboard** | XP tracking, level progression, streaks, weekly activity chart |
-| **Learning Modules** | Grammar, Vocabulary, Listening, Speaking, Writing |
-| **Exercises** | Multiple choice, fill-in-the-blank, interactive feedback |
-| **Flashcards** | Spaced repetition (SM-2 algorithm), difficulty-based reviews |
-| **Chat** | Scenario-based conversations (Interview, Travel, Business, Tech) |
-| **Gamification** | 10 achievements, XP rewards, level system (Beginner → Fluent) |
-| **Ranking** | Weekly and all-time leaderboards |
+| **Autenticação** | Registro, login, JWT com rotação de refresh token |
+| **Dashboard** | Acompanhamento de XP, progressão de nível, sequências (streaks), gráfico de atividade semanal |
+| **Módulos de Aprendizado** | Gramática, Vocabulário, Audição, Conversação, Escrita |
+| **Exercícios** | Múltipla escolha, preenchimento de lacunas, feedback interativo |
+| **Flashcards** | Repetição espaçada (algoritmo SM-2), revisões baseadas em dificuldade |
+| **Chat** | Conversas baseadas em cenários (Entrevista, Viagem, Negócios, Tecnologia) |
+| **Gamificação** | 10 conquistas, recompensas de XP, sistema de níveis (Iniciante → Fluente) |
+| **Ranking** | Leaderboards semanais e gerais |
 
-## Getting Started
+## Primeiros Passos
 
-### Prerequisites
+### Pré-requisitos
 
 - Node.js 20+
 - npm
 
-### Setup
+### Configuração
 
 ```bash
-# Install dependencies
+# Instalar dependências
 npm install
 
-# Set up database
+# Configurar banco de dados
 cd apps/api
 npx prisma db push
 npx ts-node prisma/seed.ts
 cd ../..
 
-# Start development servers
-cd apps/api && npm run dev    # API on :3001
-cd apps/web && npm run dev    # Frontend on :3000
+# Iniciar servidores de desenvolvimento
+cd apps/api && npm run dev    # API na :3001
+cd apps/web && npm run dev    # Frontend na :3000
 ```
 
-### Environment Variables
+### Variáveis de Ambiente
 
-Copy `.env.example` to `apps/api/.env` and `apps/web/.env.local`:
+Copie `.env.example` para `apps/api/.env` e `apps/web/.env.local`:
 
 ```bash
 cp .env.example apps/api/.env
 ```
 
-## Project Structure
+## Estrutura do Projeto
 
 ```
 lng-flow/
 ├── apps/
-│   ├── api/                    # NestJS backend
+│   ├── api/                    # Backend NestJS
 │   │   ├── prisma/
-│   │   │   ├── schema.prisma   # Database schema
-│   │   │   └── seed.ts         # Initial data
+│   │   │   ├── schema.prisma   # Esquema do banco de dados
+│   │   │   └── seed.ts         # Dados iniciais
 │   │   └── src/
-│   │       ├── auth/           # Authentication module
-│   │       ├── users/          # User profiles
+│   │       ├── auth/           # Módulo de autenticação
+│   │       ├── users/          # Perfis de usuário
 │   │       ├── progress/       # XP, streaks, dashboard
-│   │       ├── lessons/        # Learning exercises
-│   │       ├── flashcards/     # Spaced repetition
-│   │       ├── chat/           # Conversations
-│   │       └── achievements/   # Gamification & ranking
-│   └── web/                    # Next.js frontend
+│   │       ├── lessons/        # Exercícios de aprendizado
+│   │       ├── flashcards/     # Repetição espaçada
+│   │       ├── chat/           # Conversas
+│   │       └── achievements/   # Gamificação e ranking
+│   └── web/                    # Frontend Next.js
 │       └── src/
-│           ├── app/            # Pages (App Router)
-│           ├── components/     # UI components
-│           ├── stores/         # Zustand stores
-│           └── lib/            # API client & utilities
+│           ├── app/            # Páginas (App Router)
+│           ├── components/     # Componentes de UI
+│           ├── stores/         # Stores Zustand
+│           └── lib/            # Cliente API e utilitários
 ├── packages/
-│   └── shared/                 # Shared types & constants
-└── docker-compose.yml          # PostgreSQL & Redis (optional)
+│   └── shared/                 # Tipos e constantes compartilhados
+└── docker-compose.yml          # PostgreSQL e Redis (opcional)
 ```
 
-## API Endpoints
+## Endpoints da API
 
-### Auth
-| Method | Endpoint | Description |
+### Autenticação
+| Método | Endpoint | Descrição |
 |---|---|---|
-| POST | `/api/auth/register` | Create account |
-| POST | `/api/auth/login` | Sign in |
-| POST | `/api/auth/refresh` | Refresh tokens |
-| GET | `/api/auth/me` | Current user |
+| POST | `/api/auth/register` | Criar conta |
+| POST | `/api/auth/login` | Entrar |
+| POST | `/api/auth/refresh` | Renovar tokens |
+| GET | `/api/auth/me` | Usuário atual |
 
-### Users
-| Method | Endpoint | Description |
+### Usuários
+| Método | Endpoint | Descrição |
 |---|---|---|
-| GET | `/api/users/profile` | User profile with achievements |
-| PATCH | `/api/users/profile` | Update name, avatar, goals |
-| GET | `/api/users/stats` | Learning statistics |
+| GET | `/api/users/profile` | Perfil do usuário com conquistas |
+| PATCH | `/api/users/profile` | Atualizar nome, avatar, metas |
+| GET | `/api/users/stats` | Estatísticas de aprendizado |
 
-### Progress
-| Method | Endpoint | Description |
+### Progresso
+| Método | Endpoint | Descrição |
 |---|---|---|
-| GET | `/api/progress/dashboard` | Dashboard data (XP, streak, chart) |
-| POST | `/api/progress/xp` | Log XP transaction |
+| GET | `/api/progress/dashboard` | Dados do dashboard (XP, streak, gráfico) |
+| POST | `/api/progress/xp` | Registrar transação de XP |
 
-### Lessons
-| Method | Endpoint | Description |
+### Lições
+| Método | Endpoint | Descrição |
 |---|---|---|
-| GET | `/api/lessons/modules` | All modules with lessons |
-| GET | `/api/lessons/module/:name` | Lessons by module |
-| GET | `/api/lessons/:id` | Lesson with exercises |
-| POST | `/api/lessons/:id/exercises/:exId/attempt` | Submit answer |
-| POST | `/api/lessons/:id/complete` | Complete lesson |
+| GET | `/api/lessons/modules` | Todos os módulos com lições |
+| GET | `/api/lessons/module/:name` | Lições por módulo |
+| GET | `/api/lessons/:id` | Lição com exercícios |
+| POST | `/api/lessons/:id/exercises/:exId/attempt` | Enviar resposta |
+| POST | `/api/lessons/:id/complete` | Completar lição |
 
 ### Flashcards
-| Method | Endpoint | Description |
+| Método | Endpoint | Descrição |
 |---|---|---|
-| GET | `/api/flashcards` | All flashcards |
-| GET | `/api/flashcards/due` | Cards due for review |
-| GET | `/api/flashcards/stats` | Flashcard statistics |
-| POST | `/api/flashcards` | Create flashcard |
-| POST | `/api/flashcards/:id/review` | Review card (SM-2) |
+| GET | `/api/flashcards` | Todos os flashcards |
+| GET | `/api/flashcards/due` | Cartões pendentes de revisão |
+| GET | `/api/flashcards/stats` | Estatísticas de flashcards |
+| POST | `/api/flashcards` | Criar flashcard |
+| POST | `/api/flashcards/:id/review` | Revisar cartão (SM-2) |
 
 ### Chat
-| Method | Endpoint | Description |
+| Método | Endpoint | Descrição |
 |---|---|---|
-| GET | `/api/chat/conversations` | User conversations |
-| GET | `/api/chat/scenarios` | Available scenarios |
-| GET | `/api/chat/conversations/:id` | Conversation messages |
-| POST | `/api/chat/conversations` | Create conversation |
-| POST | `/api/chat/conversations/:id/messages` | Add message |
+| GET | `/api/chat/conversations` | Conversas do usuário |
+| GET | `/api/chat/scenarios` | Cenários disponíveis |
+| GET | `/api/chat/conversations/:id` | Mensagens da conversa |
+| POST | `/api/chat/conversations` | Criar conversa |
+| POST | `/api/chat/conversations/:id/messages` | Adicionar mensagem |
 
-### Achievements
-| Method | Endpoint | Description |
+### Conquistas
+| Método | Endpoint | Descrição |
 |---|---|---|
-| GET | `/api/achievements` | All achievements (unlocked status) |
-| GET | `/api/achievements/ranking` | All-time ranking |
-| GET | `/api/achievements/ranking/weekly` | Weekly ranking |
+| GET | `/api/achievements` | Todas as conquistas (status de desbloqueio) |
+| GET | `/api/achievements/ranking` | Ranking geral |
+| GET | `/api/achievements/ranking/weekly` | Ranking semanal |
 
-## Switching to PostgreSQL
+## Migrando para PostgreSQL
 
-1. Update `apps/api/prisma/schema.prisma`:
+1. Atualize `apps/api/prisma/schema.prisma`:
    ```prisma
    datasource db {
      provider = "postgresql"
      url      = env("DATABASE_URL")
    }
    ```
-2. Update `apps/api/.env`:
+2. Atualize `apps/api/.env`:
    ```
-   DATABASE_URL="postgresql://user:pass@localhost:5432/linguaflow"
+   DATABASE_URL="postgresql://usuario:senha@localhost:5432/linguaflow"
    ```
-3. Start PostgreSQL: `docker compose up -d`
-4. Run: `npx prisma db push`
+3. Inicie o PostgreSQL: `docker compose up -d`
+4. Execute: `npx prisma db push`
 
-## License
+---
 
-MIT
+Desenvolvido por **Lázaro Vasconcelos**
