@@ -122,7 +122,7 @@ export default function LandingPage() {
       </section>
 
       <footer className="border-t py-8 text-center text-sm text-muted-foreground">
-        <p>2024 LinguaFlow. All rights reserved.</p>
+        <p>2026 LinguaFlow. All rights reserved.</p>
       </footer>
     </div>
   );
