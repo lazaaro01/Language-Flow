@@ -1,5 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { apiReference } from '@scalar/nestjs-api-reference';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
@@ -20,8 +22,27 @@ async function bootstrap() {
 
   app.setGlobalPrefix('api');
 
+  const config = new DocumentBuilder()
+    .setTitle('LinguaFlow API')
+    .setDescription('API do aplicativo de aprendizado de idiomas LinguaFlow')
+    .setVersion('1.0')
+    .addBearerAuth()
+    .build();
+
+  const document = SwaggerModule.createDocument(app, config);
+
+  app.use(
+    '/api/docs',
+    apiReference({
+      spec: {
+        content: document,
+      },
+    }),
+  );
+
   const port = process.env.API_PORT || 3001;
   await app.listen(port);
   console.log(`API running on http://localhost:${port}`);
+  console.log(`API docs available at http://localhost:${port}/api/docs`);
 }
 bootstrap();

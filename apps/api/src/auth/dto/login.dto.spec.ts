@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { validate } from 'class-validator';
 import { LoginDto } from './login.dto';
 
@@ -35,21 +36,21 @@ describe('LoginDto', () => {
   });
 
   it('should fail with missing email', async () => {
-    const dto = Object.assign(new LoginDto(), { password: 'securePass123' }) as any;
+    const dto = Object.assign(new LoginDto(), { password: 'securePass123' });
     const errors = await validate(dto);
     expect(errors.length).toBeGreaterThanOrEqual(1);
     expect(errors.some((e) => e.property === 'email')).toBe(true);
   });
 
   it('should fail with missing password', async () => {
-    const dto = Object.assign(new LoginDto(), { email: 'user@example.com' }) as any;
+    const dto = Object.assign(new LoginDto(), { email: 'user@example.com' });
     const errors = await validate(dto);
     expect(errors.length).toBeGreaterThanOrEqual(1);
     expect(errors.some((e) => e.property === 'password')).toBe(true);
   });
 
   it('should fail when password is not a string', async () => {
-    const dto = Object.assign(new LoginDto(), { ...validDto, password: 12345 }) as any;
+    const dto = Object.assign(new LoginDto(), { ...validDto, password: 12345 });
     const errors = await validate(dto);
     expect(errors.length).toBe(1);
     expect(errors[0].property).toBe('password');
