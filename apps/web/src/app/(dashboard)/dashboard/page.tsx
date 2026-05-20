@@ -62,15 +62,15 @@ export default function DashboardPage() {
   return (
     <div className="space-y-6">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className="text-3xl font-bold">Welcome back, {user?.name}</h1>
-        <p className="text-muted-foreground">Keep up the great work!</p>
+        <h1 className="text-3xl font-bold">Bem-vindo de volta, {user?.name}</h1>
+        <p className="text-muted-foreground">Continue com o excelente trabalho!</p>
       </motion.div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium">Level</CardTitle>
+              <CardTitle className="text-sm font-medium">Nivel</CardTitle>
               <Trophy className="h-4 w-4 text-yellow-400" />
             </CardHeader>
             <CardContent>
@@ -88,13 +88,13 @@ export default function DashboardPage() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium">Streak</CardTitle>
+              <CardTitle className="text-sm font-medium">Sequencia</CardTitle>
               <Flame className="h-4 w-4 text-orange-400" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{dashboard.streak.currentStreak} days</div>
+              <div className="text-2xl font-bold">{dashboard.streak.currentStreak} dias</div>
               <p className="text-xs text-muted-foreground">
-                Best: {dashboard.streak.longestStreak} days
+                Melhor: {dashboard.streak.longestStreak} dias
               </p>
             </CardContent>
           </Card>
@@ -103,12 +103,12 @@ export default function DashboardPage() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium">Today&apos;s XP</CardTitle>
+              <CardTitle className="text-sm font-medium">XP de Hoje</CardTitle>
               <Zap className="h-4 w-4 text-primary" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">+{dashboard.todayXp}</div>
-              <p className="text-xs text-muted-foreground">XP earned today</p>
+              <p className="text-xs text-muted-foreground">XP ganho hoje</p>
             </CardContent>
           </Card>
         </motion.div>
@@ -116,13 +116,13 @@ export default function DashboardPage() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium">Accuracy</CardTitle>
+              <CardTitle className="text-sm font-medium">Precisao</CardTitle>
               <Target className="h-4 w-4 text-green-400" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{stats.accuracy}%</div>
               <p className="text-xs text-muted-foreground">
-                {stats.exercisesCorrect}/{stats.exercisesAttempted} correct
+                {stats.exercisesCorrect}/{stats.exercisesAttempted} corretos
               </p>
             </CardContent>
           </Card>
@@ -133,14 +133,14 @@ export default function DashboardPage() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}>
           <Card>
             <CardHeader>
-              <CardTitle>Weekly Activity</CardTitle>
+              <CardTitle>Atividade Semanal</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-end gap-2">
                 {dashboard.weeklyChart.map((day) => {
                   const maxXp = Math.max(...dashboard.weeklyChart.map((d) => d.xp), 1);
                   const height = (day.xp / maxXp) * 100;
-                  const dayLabel = new Date(day.date).toLocaleDateString('en', { weekday: 'short' });
+                  const dayLabel = new Date(day.date).toLocaleDateString('pt-BR', { weekday: 'short' });
                   return (
                     <div key={day.date} className="flex flex-1 flex-col items-center gap-1">
                       <span className="text-xs text-muted-foreground">{day.xp}</span>
@@ -160,22 +160,22 @@ export default function DashboardPage() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}>
           <Card>
             <CardHeader>
-              <CardTitle>Quick Actions</CardTitle>
+              <CardTitle>Acoes Rapidas</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <Link href="/learn">
                 <Button variant="outline" className="w-full justify-start gap-3">
-                  <BookOpen className="h-4 w-4" /> Continue Learning <ArrowRight className="ml-auto h-4 w-4" />
+                  <BookOpen className="h-4 w-4" /> Continuar Aprendendo <ArrowRight className="ml-auto h-4 w-4" />
                 </Button>
               </Link>
               <Link href="/chat">
                 <Button variant="outline" className="w-full justify-start gap-3">
-                  <MessageSquare className="h-4 w-4" /> Practice Conversation <ArrowRight className="ml-auto h-4 w-4" />
+                  <MessageSquare className="h-4 w-4" /> Praticar Conversacao <ArrowRight className="ml-auto h-4 w-4" />
                 </Button>
               </Link>
               <Link href="/flashcards">
                 <Button variant="outline" className="w-full justify-start gap-3">
-                  <BookOpen className="h-4 w-4" /> Review Flashcards <ArrowRight className="ml-auto h-4 w-4" />
+                  <BookOpen className="h-4 w-4" /> Revisar Flashcards <ArrowRight className="ml-auto h-4 w-4" />
                 </Button>
               </Link>
             </CardContent>
@@ -186,25 +186,25 @@ export default function DashboardPage() {
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }}>
         <Card>
           <CardHeader>
-            <CardTitle>Learning Statistics</CardTitle>
+            <CardTitle>Estatisticas de Aprendizado</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
               <div className="rounded-lg bg-muted p-4 text-center">
                 <div className="text-2xl font-bold">{stats.lessonsCompleted}</div>
-                <p className="text-xs text-muted-foreground">Lessons Done</p>
+                <p className="text-xs text-muted-foreground">Licoes Concluidas</p>
               </div>
               <div className="rounded-lg bg-muted p-4 text-center">
                 <div className="text-2xl font-bold">{stats.exercisesAttempted}</div>
-                <p className="text-xs text-muted-foreground">Exercises</p>
+                <p className="text-xs text-muted-foreground">Exercicios</p>
               </div>
               <div className="rounded-lg bg-muted p-4 text-center">
                 <div className="text-2xl font-bold">{stats.conversations}</div>
-                <p className="text-xs text-muted-foreground">Conversations</p>
+                <p className="text-xs text-muted-foreground">Conversas</p>
               </div>
               <div className="rounded-lg bg-muted p-4 text-center">
                 <div className="text-2xl font-bold">{stats.flashcardsReviewed}</div>
-                <p className="text-xs text-muted-foreground">Cards Reviewed</p>
+                <p className="text-xs text-muted-foreground">Cartoes Revisados</p>
               </div>
             </div>
           </CardContent>

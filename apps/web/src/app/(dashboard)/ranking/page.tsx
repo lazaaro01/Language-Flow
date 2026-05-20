@@ -49,13 +49,13 @@ export default function RankingPage() {
     <div className="space-y-6">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
         <h1 className="text-3xl font-bold">Ranking</h1>
-        <p className="text-muted-foreground">Compete with other learners</p>
+        <p className="text-muted-foreground">Compita com outros alunos</p>
       </motion.div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabsList>
-          <TabsTrigger value="weekly">This Week</TabsTrigger>
-          <TabsTrigger value="alltime">All Time</TabsTrigger>
+          <TabsTrigger value="weekly">Esta Semana</TabsTrigger>
+          <TabsTrigger value="alltime">Geral</TabsTrigger>
         </TabsList>
 
         <TabsContent value={activeTab} className="mt-6">
@@ -66,8 +66,8 @@ export default function RankingPage() {
                   #{data.userRank}
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Your Position</p>
-                  <p className="font-medium">Rank #{data.userRank}</p>
+                  <p className="text-sm text-muted-foreground">Sua Posicao</p>
+                  <p className="font-medium">Ranking #{data.userRank}</p>
                 </div>
               </CardContent>
             </Card>
@@ -101,7 +101,7 @@ export default function RankingPage() {
                       <p className="font-medium">
                         {entry.name}
                         {entry.id === userId && (
-                          <Badge variant="secondary" className="ml-2 text-xs">You</Badge>
+                          <Badge variant="secondary" className="ml-2 text-xs">Voce</Badge>
                         )}
                       </p>
                       <p className="text-xs text-muted-foreground">{entry.level.name}</p>

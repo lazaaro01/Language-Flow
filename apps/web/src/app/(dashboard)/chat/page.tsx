@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
-import { MessageSquare, Plus, Send, User, Bot, ChevronRight } from 'lucide-react';
+import { MessageSquare, Plus, Send, User, Bot, ChevronRight, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
 interface Conversation {
@@ -63,6 +63,8 @@ export default function ChatPage() {
     },
   });
 
+  const currentConv = conversations?.find((c) => c.id === selectedConv);
+
   const sendMsg = useMutation({
     mutationFn: (data: { content: string }) =>
       api.post(`/chat/conversations/${selectedConv}/messages`, { role: 'user', ...data }),
@@ -80,11 +82,11 @@ export default function ChatPage() {
 
   return (
     <div className="flex h-[calc(100vh-6rem)] gap-6">
-      <div className="w-80 shrink-0 space-y-4">
+      <div className={`${selectedConv ? 'hidden md:block' : 'block'} w-80 shrink-0 space-y-4`}>
         <div className="flex items-center justify-between">
-          <h2 className="text-xl font-bold">Conversations</h2>
+          <h2 className="text-xl font-bold">Conversas</h2>
           <Button size="sm" onClick={() => setShowNewConv(true)}>
-            <Plus className="mr-1 h-4 w-4" /> New
+            <Plus className="mr-1 h-4 w-4" /> Nova
           </Button>
         </div>
 
@@ -101,7 +103,7 @@ export default function ChatPage() {
                 <div>
                   <p className="font-medium">{conv.title}</p>
                   <p className="text-xs text-muted-foreground">
-                    {conv._count.messages} messages
+                    {conv._count.messages} mensagens
                   </p>
                 </div>
                 <ChevronRight className="h-4 w-4 text-muted-foreground" />
@@ -114,7 +116,7 @@ export default function ChatPage() {
           <Card>
             <CardContent className="space-y-3 p-4">
               <Input
-                placeholder="Conversation title"
+                placeholder="Titulo da conversa"
                 value={convTitle}
                 onChange={(e) => setConvTitle(e.target.value)}
               />
@@ -138,10 +140,10 @@ export default function ChatPage() {
                   onClick={() => createConv.mutate({ title: convTitle, scenario: convScenario || undefined })}
                   disabled={!convTitle}
                 >
-                  Create
+                  Criar
                 </Button>
                 <Button size="sm" variant="ghost" onClick={() => setShowNewConv(false)}>
-                  Cancel
+                  Cancelar
                 </Button>
               </div>
             </CardContent>
@@ -149,9 +151,15 @@ export default function ChatPage() {
         )}
       </div>
 
-      <div className="flex flex-1 flex-col rounded-lg border">
+      <div className={`${!selectedConv ? 'hidden md:flex' : 'flex'} flex-1 flex-col rounded-lg border`}>
         {selectedConv ? (
           <>
+            <div className="flex items-center gap-2 border-b p-3 md:hidden">
+              <Button variant="ghost" size="icon" onClick={() => setSelectedConv(null)}>
+                <ArrowLeft className="h-4 w-4" />
+              </Button>
+              <span className="truncate font-medium">{currentConv?.title}</span>
+            </div>
             <div className="flex-1 space-y-4 overflow-y-auto p-4">
               {messages?.messages.map((msg) => (
                 <motion.div
@@ -174,10 +182,10 @@ export default function ChatPage() {
                   >
                     <p className="text-sm">{msg.content}</p>
                     {msg.correction && (
-                      <p className="mt-1 text-xs text-green-400">Corrected: {msg.correction}</p>
+                      <p className="mt-1 text-xs text-green-400">Corrigido: {msg.correction}</p>
                     )}
                     {msg.suggestion && (
-                      <p className="mt-1 text-xs text-blue-400">Suggestion: {msg.suggestion}</p>
+                      <p className="mt-1 text-xs text-blue-400">Sugestao: {msg.suggestion}</p>
                     )}
                   </div>
                   {msg.role === 'user' && (
@@ -191,7 +199,7 @@ export default function ChatPage() {
             <div className="border-t p-4">
               <div className="flex gap-2">
                 <Input
-                  placeholder="Type a message..."
+                  placeholder="Digite uma mensagem..."
                   value={newMessage}
                   onChange={(e) => setNewMessage(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && handleSend()}
@@ -206,8 +214,8 @@ export default function ChatPage() {
           <div className="flex flex-1 items-center justify-center">
             <div className="text-center">
               <MessageSquare className="mx-auto mb-4 h-12 w-12 text-muted-foreground" />
-              <h3 className="text-lg font-medium">Select a conversation</h3>
-              <p className="text-sm text-muted-foreground">Choose a conversation or start a new one</p>
+              <h3 className="text-lg font-medium">Selecione uma conversa</h3>
+              <p className="text-sm text-muted-foreground">Escolha uma conversa ou inicie uma nova</p>
             </div>
           </div>
         )}

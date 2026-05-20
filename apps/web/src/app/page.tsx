@@ -7,12 +7,12 @@ import { Button } from '@/components/ui/button';
 
 export default function LandingPage() {
   const features = [
-    { icon: MessageSquare, title: 'AI Conversations', description: 'Practice real conversations with adaptive AI' },
-    { icon: BookOpen, title: 'Smart Flashcards', description: 'Spaced repetition for efficient vocabulary learning' },
-    { icon: Zap, title: 'Gamified Learning', description: 'Earn XP, streaks, and achievements' },
-    { icon: BarChart3, title: 'Progress Tracking', description: 'Detailed analytics of your learning journey' },
-    { icon: Users, title: 'Community Ranking', description: 'Compete and learn with others' },
-    { icon: Sparkles, title: 'Personalized Path', description: 'Adaptive exercises based on your level' },
+    { icon: MessageSquare, title: 'Conversas com IA', description: 'Pratique conversas reais com IA adaptativa' },
+    { icon: BookOpen, title: 'Flashcards Inteligentes', description: 'Repeticao espacada para aprendizado eficiente de vocabulario' },
+    { icon: Zap, title: 'Aprendizado Gamificado', description: 'Ganhe XP, sequencias e conquistas' },
+    { icon: BarChart3, title: 'Acompanhamento de Progresso', description: 'Analises detalhadas da sua jornada de aprendizado' },
+    { icon: Users, title: 'Ranking da Comunidade', description: 'Compita e aprenda com outros' },
+    { icon: Sparkles, title: 'Caminho Personalizado', description: 'Exercicios adaptativos baseados no seu nivel' },
   ];
 
   return (
@@ -27,16 +27,16 @@ export default function LandingPage() {
           </div>
           <div className="flex items-center gap-4">
             <Link href="/login">
-              <Button variant="ghost">Sign In</Button>
+                  <Button variant="ghost">Entrar</Button>
             </Link>
             <Link href="/register">
-              <Button>Get Started</Button>
+              <Button>Comecar</Button>
             </Link>
           </div>
         </div>
       </header>
 
-      <section className="relative mx-auto max-w-7xl px-4 pt-32 pb-20">
+      <section className="relative mx-auto max-w-7xl px-4 pt-24 sm:pt-32 pb-16 sm:pb-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -45,28 +45,28 @@ export default function LandingPage() {
         >
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border bg-primary/10 px-4 py-1.5 text-sm text-primary">
             <Sparkles className="h-4 w-4" />
-            AI-Powered Learning Platform
+            Plataforma de Aprendizado com IA
           </div>
-          <h1 className="mb-6 text-5xl font-bold leading-tight md:text-7xl">
-            Learn English
+          <h1 className="mb-6 text-4xl font-bold leading-tight sm:text-5xl lg:text-7xl">
+            Aprenda Ingles
             <br />
             <span className="bg-gradient-to-r from-primary to-purple-400 bg-clip-text text-transparent">
-              Like Never Before
+              Como Nunca Antes
             </span>
           </h1>
           <p className="mx-auto mb-10 max-w-2xl text-lg text-muted-foreground">
-            An interactive platform that combines AI conversations, smart flashcards,
-            and gamification to make learning English engaging and effective.
+            Uma plataforma interativa que combina conversas com IA, flashcards inteligentes
+            e gamificacao para tornar o aprendizado de ingles envolvente e eficaz.
           </p>
-          <div className="flex items-center justify-center gap-4">
+          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
             <Link href="/register">
               <Button size="lg" className="gap-2 text-base">
-                Start Learning Free <ArrowRight className="h-5 w-5" />
+                Comece a Aprender Gratis <ArrowRight className="h-5 w-5" />
               </Button>
             </Link>
             <Link href="/login">
               <Button variant="outline" size="lg" className="text-base">
-                Sign In
+                Entrar
               </Button>
             </Link>
           </div>
@@ -80,9 +80,9 @@ export default function LandingPage() {
           transition={{ duration: 0.6 }}
           className="mb-12 text-center"
         >
-          <h2 className="mb-4 text-3xl font-bold md:text-4xl">Everything You Need</h2>
+          <h2 className="mb-4 text-3xl font-bold md:text-4xl">Tudo que Voce Precisa</h2>
           <p className="mx-auto max-w-2xl text-muted-foreground">
-            Comprehensive tools designed to make your English learning journey effective and enjoyable.
+            Ferramentas completas projetadas para tornar sua jornada de aprendizado de ingles eficaz e agradavel.
           </p>
         </motion.div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -107,22 +107,22 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-20">
-        <div className="rounded-2xl border bg-card p-12 text-center">
-          <h2 className="mb-4 text-3xl font-bold md:text-4xl">Ready to Start?</h2>
+      <section className="mx-auto max-w-7xl px-4 py-12 sm:py-20">
+        <div className="rounded-2xl border bg-card p-6 sm:p-12 text-center">
+          <h2 className="mb-4 text-3xl font-bold md:text-4xl">Pronto para Comecar?</h2>
           <p className="mx-auto mb-8 max-w-xl text-muted-foreground">
-            Join learners worldwide and transform your English skills with LinguaFlow.
+            Junte-se a alunos do mundo todo e transforme suas habilidades em ingles com o LinguaFlow.
           </p>
           <Link href="/register">
             <Button size="lg" className="gap-2 text-base">
-              Get Started Free <ArrowRight className="h-5 w-5" />
+              Comece Gratis <ArrowRight className="h-5 w-5" />
             </Button>
           </Link>
         </div>
       </section>
 
       <footer className="border-t py-8 text-center text-sm text-muted-foreground">
-        <p>2026 LinguaFlow. All rights reserved.</p>
+        <p>2026 LinguaFlow. Todos os direitos reservados.</p>
       </footer>
     </div>
   );

@@ -23,7 +23,7 @@ export default function LoginPage() {
       await login(email, password);
       router.push('/dashboard');
     } catch (err: any) {
-      setError(err.message || 'Login failed');
+      setError(err.message || 'Falha no login');
     }
   };
 
@@ -34,8 +34,8 @@ export default function LoginPage() {
           <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary">
             <span className="text-2xl font-bold text-primary-foreground">L</span>
           </div>
-          <CardTitle>Welcome back</CardTitle>
-          <CardDescription>Sign in to continue learning</CardDescription>
+          <CardTitle>Bem-vindo de volta</CardTitle>
+          <CardDescription>Entre para continuar aprendendo</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -49,14 +49,14 @@ export default function LoginPage() {
               <Input
                 id="email"
                 type="email"
-                placeholder="you@example.com"
+                placeholder="voce@exemplo.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">Senha</Label>
               <Input
                 id="password"
                 type="password"
@@ -67,13 +67,13 @@ export default function LoginPage() {
               />
             </div>
             <Button type="submit" className="w-full">
-              Sign In
+              Entrar
             </Button>
           </form>
           <p className="mt-4 text-center text-sm text-muted-foreground">
-            Don&apos;t have an account?{' '}
+            Nao tem uma conta?{' '}
             <Link href="/register" className="text-primary hover:underline">
-              Sign up
+              Cadastre-se
             </Link>
           </p>
         </CardContent>

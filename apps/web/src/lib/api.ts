@@ -43,7 +43,7 @@ async function request<T>(endpoint: string, options: FetchOptions = {}): Promise
 
         const retryRes = await fetch(`${API_BASE}${endpoint}`, { ...fetchOptions, headers });
         if (!retryRes.ok) {
-          throw new ApiError('Request failed after refresh', retryRes.status);
+          throw new ApiError('Requisicao falhou apos renovar token', retryRes.status);
         }
         return retryRes.json();
       } else {
@@ -52,15 +52,15 @@ async function request<T>(endpoint: string, options: FetchOptions = {}): Promise
         if (typeof window !== 'undefined') {
           window.location.href = '/login';
         }
-        throw new ApiError('Session expired', 401);
+        throw new ApiError('Sessao expirada', 401);
       }
     }
-    throw new ApiError('Unauthorized', 401);
+    throw new ApiError('Nao autorizado', 401);
   }
 
   if (!res.ok) {
-    const error = await res.json().catch(() => ({ message: 'Request failed' }));
-    throw new ApiError(error.message || 'Request failed', res.status);
+    const error = await res.json().catch(() => ({ message: 'Falha na requisicao' }));
+    throw new ApiError(error.message || 'Falha na requisicao', res.status);
   }
 
   return res.json();

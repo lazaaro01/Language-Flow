@@ -6,13 +6,13 @@ import { Providers } from './providers';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'LinguaFlow AI - Learn English',
-  description: 'Modern English learning platform with AI-powered conversations',
+  title: 'LinguaFlow AI - Aprenda Ingles',
+  description: 'Plataforma moderna de aprendizado de ingles com conversas com IA',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="pt-BR" className="dark">
       <body className={inter.className}>
         <Providers>{children}</Providers>
       </body>

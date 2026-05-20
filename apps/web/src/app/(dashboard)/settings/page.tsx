@@ -40,28 +40,28 @@ export default function SettingsPage() {
   return (
     <div className="mx-auto max-w-2xl space-y-6">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className="text-3xl font-bold">Settings</h1>
-        <p className="text-muted-foreground">Manage your account and preferences</p>
+        <h1 className="text-3xl font-bold">Configuracoes</h1>
+        <p className="text-muted-foreground">Gerencie sua conta e preferencias</p>
       </motion.div>
 
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
         <Card>
           <CardHeader>
-            <CardTitle>Profile</CardTitle>
-            <CardDescription>Update your personal information</CardDescription>
+            <CardTitle>Perfil</CardTitle>
+            <CardDescription>Atualize suas informacoes pessoais</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="name">Name</Label>
+              <Label htmlFor="name">Nome</Label>
               <Input id="name" value={name} onChange={(e) => setName(e.target.value)} />
             </div>
             <div className="space-y-2">
               <Label>Email</Label>
               <Input value={user?.email || ''} disabled />
-              <p className="text-xs text-muted-foreground">Email cannot be changed</p>
+              <p className="text-xs text-muted-foreground">Email nao pode ser alterado</p>
             </div>
             <Button onClick={handleSave} disabled={updateMutation.isPending} className="gap-2">
-              <Save className="h-4 w-4" /> Save Changes
+              <Save className="h-4 w-4" /> Salvar Alteracoes
             </Button>
           </CardContent>
         </Card>
@@ -70,8 +70,8 @@ export default function SettingsPage() {
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
         <Card>
           <CardHeader>
-            <CardTitle>Daily Goal</CardTitle>
-            <CardDescription>Set your daily study target</CardDescription>
+            <CardTitle>Meta Diaria</CardTitle>
+            <CardDescription>Defina sua meta diaria de estudo</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="flex gap-3">
@@ -92,7 +92,7 @@ export default function SettingsPage() {
               className="mt-4"
               disabled={updateMutation.isPending}
             >
-              Update Goal
+              Atualizar Meta
             </Button>
           </CardContent>
         </Card>
@@ -101,17 +101,17 @@ export default function SettingsPage() {
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
         <Card>
           <CardHeader>
-            <CardTitle>Appearance</CardTitle>
-            <CardDescription>Toggle dark mode</CardDescription>
+            <CardTitle>Aparencia</CardTitle>
+            <CardDescription>Alternar modo escuro</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 {isDark ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
-                <span>{isDark ? 'Dark Mode' : 'Light Mode'}</span>
+                <span>{isDark ? 'Modo Escuro' : 'Modo Claro'}</span>
               </div>
               <Button variant="outline" onClick={toggle}>
-                Switch to {isDark ? 'Light' : 'Dark'}
+                Mudar para {isDark ? 'Claro' : 'Escuro'}
               </Button>
             </div>
           </CardContent>
@@ -121,12 +121,12 @@ export default function SettingsPage() {
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
         <Card>
           <CardHeader>
-            <CardTitle>Account</CardTitle>
-            <CardDescription>Sign out of your account</CardDescription>
+            <CardTitle>Conta</CardTitle>
+            <CardDescription>Sair da sua conta</CardDescription>
           </CardHeader>
           <CardContent>
             <Button variant="destructive" onClick={logout} className="gap-2">
-              <LogOut className="h-4 w-4" /> Sign Out
+              <LogOut className="h-4 w-4" /> Sair
             </Button>
           </CardContent>
         </Card>

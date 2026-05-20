@@ -42,8 +42,8 @@ export default function LearnPage() {
   return (
     <div className="space-y-6">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className="text-3xl font-bold">Learning Modules</h1>
-        <p className="text-muted-foreground">Choose a module to start learning</p>
+        <h1 className="text-3xl font-bold">Modulos de Aprendizado</h1>
+        <p className="text-muted-foreground">Escolha um modulo para comecar a aprender</p>
       </motion.div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -64,7 +64,7 @@ export default function LearnPage() {
                     </div>
                     <CardTitle className="capitalize">{mod.module}</CardTitle>
                     <CardDescription className="mt-1">
-                      {mod.lessons.length} lessons
+                      {mod.lessons.length} licoes
                     </CardDescription>
                   </div>
                   <CardContent className="p-4">

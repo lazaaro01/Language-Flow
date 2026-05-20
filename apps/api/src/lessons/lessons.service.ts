@@ -40,7 +40,7 @@ export class LessonsService {
         progress: { where: { userId } },
       },
     });
-    if (!lesson) throw new NotFoundException('Lesson not found');
+    if (!lesson) throw new NotFoundException('Licao nao encontrada');
     return lesson;
   }
 
@@ -50,7 +50,7 @@ export class LessonsService {
     answer: string,
   ) {
     const exercise = await this.prisma.exercise.findUnique({ where: { id: exerciseId } });
-    if (!exercise) throw new NotFoundException('Exercise not found');
+    if (!exercise) throw new NotFoundException('Exercicio nao encontrado');
 
     const correct = exercise.correctAnswer.toLowerCase().trim() === answer.toLowerCase().trim();
 
@@ -72,7 +72,7 @@ export class LessonsService {
       where: { id: lessonId },
       include: { exercises: true, progress: { where: { userId } } },
     });
-    if (!lesson) throw new NotFoundException('Lesson not found');
+    if (!lesson) throw new NotFoundException('Licao nao encontrada');
 
     const total = lesson.exercises.length;
     const progress = lesson.progress[0];

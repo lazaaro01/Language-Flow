@@ -9,14 +9,18 @@ import {
   MessageSquare,
   BookOpen,
   Trophy,
+  User,
+  Settings,
 } from 'lucide-react';
 
 const items = [
-  { href: '/dashboard', icon: LayoutDashboard, label: 'Home' },
-  { href: '/learn', icon: GraduationCap, label: 'Learn' },
+  { href: '/dashboard', icon: LayoutDashboard, label: 'Inicio' },
+  { href: '/learn', icon: GraduationCap, label: 'Aprender' },
   { href: '/chat', icon: MessageSquare, label: 'Chat' },
-  { href: '/flashcards', icon: BookOpen, label: 'Cards' },
-  { href: '/ranking', icon: Trophy, label: 'Rank' },
+  { href: '/flashcards', icon: BookOpen, label: 'Cartoes' },
+  { href: '/ranking', icon: Trophy, label: 'Ranking' },
+  { href: '/profile', icon: User, label: 'Perfil' },
+  { href: '/settings', icon: Settings, label: 'Config' },
 ];
 
 export function MobileNav() {

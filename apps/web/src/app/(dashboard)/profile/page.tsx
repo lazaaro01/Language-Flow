@@ -64,12 +64,12 @@ export default function ProfilePage() {
               </Badge>
               <Badge variant="secondary">
                 <Flame className="mr-1 h-3 w-3" />
-                {profile.streak?.currentStreak ?? 0} day streak
+                {profile.streak?.currentStreak ?? 0} dias de sequencia
               </Badge>
             </div>
             <div className="mt-6 w-full max-w-sm">
               <div className="mb-2 flex justify-between text-sm">
-                <span className="text-muted-foreground">Level Progress</span>
+                <span className="text-muted-foreground">Progresso do Nivel</span>
                 <span>{profile.totalXp} XP</span>
               </div>
               <Progress value={levelProgress} />
@@ -81,7 +81,7 @@ export default function ProfilePage() {
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
         <Card>
           <CardHeader>
-            <CardTitle>Achievements</CardTitle>
+            <CardTitle>Conquistas</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
@@ -97,7 +97,7 @@ export default function ProfilePage() {
               ))}
               {(!profile.achievements || profile.achievements.length === 0) && (
                 <p className="col-span-full py-8 text-center text-muted-foreground">
-                  Complete lessons and challenges to earn achievements!
+                  Complete licoes e desafios para ganhar conquistas!
                 </p>
               )}
             </div>
@@ -108,31 +108,31 @@ export default function ProfilePage() {
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
         <Card>
           <CardHeader>
-            <CardTitle>Learning Statistics</CardTitle>
+            <CardTitle>Estatisticas de Aprendizado</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
               <div className="space-y-1">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <BookOpen className="h-4 w-4" /> Lessons
+                  <BookOpen className="h-4 w-4" /> Licoes
                 </div>
                 <p className="text-2xl font-bold">{stats.lessonsCompleted}</p>
               </div>
               <div className="space-y-1">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Target className="h-4 w-4" /> Accuracy
+                  <Target className="h-4 w-4" /> Precisao
                 </div>
                 <p className="text-2xl font-bold">{stats.accuracy}%</p>
               </div>
               <div className="space-y-1">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <MessageSquare className="h-4 w-4" /> Conversations
+                  <MessageSquare className="h-4 w-4" /> Conversas
                 </div>
                 <p className="text-2xl font-bold">{stats.conversations}</p>
               </div>
               <div className="space-y-1">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Zap className="h-4 w-4" /> Total XP
+                  <Zap className="h-4 w-4" /> XP Total
                 </div>
                 <p className="text-2xl font-bold">{profile.totalXp}</p>
               </div>

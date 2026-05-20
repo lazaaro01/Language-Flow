@@ -82,13 +82,13 @@ export default function LessonPage() {
           <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-green-500/20">
             <Check className="h-10 w-10 text-green-400" />
           </div>
-          <h2 className="mb-2 text-2xl font-bold">Lesson Complete!</h2>
-          <p className="mb-8 text-muted-foreground">Great job! You earned +50 XP</p>
-          <div className="flex items-center justify-center gap-4">
-            <Link href="/learn">
-              <Button variant="outline">Back to Modules</Button>
+          <h2 className="mb-2 text-2xl font-bold">Licao Concluida!</h2>
+          <p className="mb-8 text-muted-foreground">Otimo trabalho! Voce ganhou +50 XP</p>
+          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+            <Link href="/learn" className="w-full sm:w-auto">
+              <Button variant="outline" className="w-full sm:w-auto">Voltar aos Modulos</Button>
             </Link>
-            <Button onClick={() => setSelectedLesson(null)}>Next Lesson</Button>
+            <Button onClick={() => setSelectedLesson(null)} className="w-full sm:w-auto">Proxima Licao</Button>
           </div>
         </motion.div>
       </div>
@@ -106,7 +106,7 @@ export default function LessonPage() {
           onClick={() => setSelectedLesson(null)}
           className="mb-6 flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
         >
-          <ArrowLeft className="h-4 w-4" /> Back to lessons
+          <ArrowLeft className="h-4 w-4" /> Voltar as licoes
         </button>
 
         <div className="mb-6">
@@ -129,7 +129,7 @@ export default function LessonPage() {
             <Card>
               <CardHeader>
                 <Badge variant="outline" className="mb-2 w-fit capitalize">
-                  {exercise.type === 'fill-blank' ? 'Fill in the blank' : 'Multiple choice'}
+                  {exercise.type === 'fill-blank' ? 'Preencha a lacuna' : 'Multipla escolha'}
                 </Badge>
                 <CardTitle className="text-lg">{exercise.question}</CardTitle>
               </CardHeader>
@@ -150,7 +150,7 @@ export default function LessonPage() {
                   </div>
                 ) : (
                   <Input
-                    placeholder="Type your answer..."
+                    placeholder="Digite sua resposta..."
                     value={answer}
                     onChange={(e) => setAnswer(e.target.value)}
                     disabled={!!feedback}
@@ -168,9 +168,9 @@ export default function LessonPage() {
                   >
                     <div className="flex items-center gap-2 font-medium">
                       {feedback.correct ? (
-                        <><Check className="h-5 w-5" /> Correct!</>
+                        <><Check className="h-5 w-5" /> Correto!</>
                       ) : (
-                        <><X className="h-5 w-5" /> Incorrect. Answer: {feedback.correctAnswer}</>
+                        <><X className="h-5 w-5" /> Incorreto. Resposta: {feedback.correctAnswer}</>
                       )}
                     </div>
                   </motion.div>
@@ -179,14 +179,14 @@ export default function LessonPage() {
                 <div className="mt-6 flex justify-end">
                   {!feedback ? (
                     <Button onClick={handleSubmit} disabled={!answer || attemptMutation.isPending}>
-                      {attemptMutation.isPending ? 'Checking...' : 'Submit'}
+                      {attemptMutation.isPending ? 'Verificando...' : 'Enviar'}
                     </Button>
                   ) : (
                     <Button onClick={handleNext} className="gap-2">
                       {currentExercise < selectedLesson.exercises.length - 1 ? (
-                        <>Next <ChevronRight className="h-4 w-4" /></>
+                        <>Proximo <ChevronRight className="h-4 w-4" /></>
                       ) : (
-                        'Complete Lesson'
+                        'Concluir Licao'
                       )}
                     </Button>
                   )}
@@ -203,10 +203,10 @@ export default function LessonPage() {
     <div className="space-y-6">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
         <Link href="/learn" className="mb-4 flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
-          <ArrowLeft className="h-4 w-4" /> Back to modules
+          <ArrowLeft className="h-4 w-4" /> Voltar aos modulos
         </Link>
         <h1 className="text-3xl font-bold capitalize">{moduleName}</h1>
-        <p className="text-muted-foreground">Select a lesson to begin</p>
+        <p className="text-muted-foreground">Selecione uma licao para comecar</p>
       </motion.div>
 
       <div className="grid gap-4 md:grid-cols-2">
@@ -224,7 +224,7 @@ export default function LessonPage() {
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-lg">{lesson.title}</CardTitle>
-                  <Badge variant="secondary">{lesson._count.exercises} exercises</Badge>
+                  <Badge variant="secondary">{lesson._count.exercises} exercicios</Badge>
                 </div>
                 <p className="text-sm text-muted-foreground">{lesson.description}</p>
               </CardHeader>

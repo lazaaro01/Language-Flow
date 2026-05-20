@@ -18,7 +18,7 @@ export class ChatService {
       where: { id, userId },
       include: { messages: { orderBy: { createdAt: 'asc' } } },
     });
-    if (!conversation) throw new NotFoundException('Conversation not found');
+    if (!conversation) throw new NotFoundException('Conversa nao encontrada');
     return conversation;
   }
 
@@ -36,7 +36,7 @@ export class ChatService {
     const conversation = await this.prisma.conversation.findFirst({
       where: { id: conversationId, userId },
     });
-    if (!conversation) throw new NotFoundException('Conversation not found');
+    if (!conversation) throw new NotFoundException('Conversa nao encontrada');
 
     const message = await this.prisma.conversationMessage.create({
       data: {
@@ -56,12 +56,12 @@ export class ChatService {
 
   async getScenarios() {
     return [
-      { id: 'interview', label: 'Job Interview', icon: 'briefcase' },
-      { id: 'restaurant', label: 'At a Restaurant', icon: 'utensils' },
-      { id: 'travel', label: 'International Travel', icon: 'plane' },
-      { id: 'casual', label: 'Casual Conversation', icon: 'smile' },
-      { id: 'business', label: 'Business Meeting', icon: 'building' },
-      { id: 'technical', label: 'Tech Talk', icon: 'code' },
+      { id: 'interview', label: 'Entrevista de Emprego', icon: 'briefcase' },
+      { id: 'restaurant', label: 'Em um Restaurante', icon: 'utensils' },
+      { id: 'travel', label: 'Viagem Internacional', icon: 'plane' },
+      { id: 'casual', label: 'Conversa Casual', icon: 'smile' },
+      { id: 'business', label: 'Reuniao de Negocios', icon: 'building' },
+      { id: 'technical', label: 'Conversa Tecnica', icon: 'code' },
     ];
   }
 }

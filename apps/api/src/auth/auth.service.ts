@@ -14,7 +14,7 @@ export class AuthService {
 
   async register(dto: RegisterDto) {
     const existing = await this.prisma.user.findUnique({ where: { email: dto.email } });
-    if (existing) throw new ConflictException('Email already registered');
+    if (existing) throw new ConflictException('Email ja cadastrado');
 
     const passwordHash = await bcrypt.hash(dto.password, 10);
 
@@ -42,10 +42,10 @@ export class AuthService {
       include: { level: true, streak: true },
     });
 
-    if (!user) throw new UnauthorizedException('Invalid credentials');
+    if (!user) throw new UnauthorizedException('Credenciais invalidas');
 
     const valid = await bcrypt.compare(dto.password, user.passwordHash);
-    if (!valid) throw new UnauthorizedException('Invalid credentials');
+    if (!valid) throw new UnauthorizedException('Credenciais invalidas');
 
     return this.generateTokens(user);
   }
@@ -55,7 +55,7 @@ export class AuthService {
       where: { id: userId },
       include: { level: true, streak: true },
     });
-    if (!user) throw new UnauthorizedException('User not found');
+    if (!user) throw new UnauthorizedException('Usuario nao encontrado');
     return this.generateTokens(user);
   }
 

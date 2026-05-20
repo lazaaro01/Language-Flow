@@ -24,7 +24,7 @@ export default function RegisterPage() {
       await register(email, name, password);
       router.push('/dashboard');
     } catch (err: any) {
-      setError(err.message || 'Registration failed');
+      setError(err.message || 'Falha no cadastro');
     }
   };
 
@@ -35,8 +35,8 @@ export default function RegisterPage() {
           <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary">
             <span className="text-2xl font-bold text-primary-foreground">L</span>
           </div>
-          <CardTitle>Create your account</CardTitle>
-          <CardDescription>Start your English learning journey</CardDescription>
+          <CardTitle>Crie sua conta</CardTitle>
+          <CardDescription>Comece sua jornada de aprendizado de ingles</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -46,10 +46,10 @@ export default function RegisterPage() {
               </div>
             )}
             <div className="space-y-2">
-              <Label htmlFor="name">Name</Label>
+              <Label htmlFor="name">Nome</Label>
               <Input
                 id="name"
-                placeholder="Your name"
+                placeholder="Seu nome"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
@@ -60,18 +60,18 @@ export default function RegisterPage() {
               <Input
                 id="email"
                 type="email"
-                placeholder="you@example.com"
+                placeholder="voce@exemplo.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">Senha</Label>
               <Input
                 id="password"
                 type="password"
-                placeholder="At least 6 characters"
+                placeholder="No minimo 6 caracteres"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -79,13 +79,13 @@ export default function RegisterPage() {
               />
             </div>
             <Button type="submit" className="w-full">
-              Create Account
+              Criar Conta
             </Button>
           </form>
           <p className="mt-4 text-center text-sm text-muted-foreground">
-            Already have an account?{' '}
+            Ja tem uma conta?{' '}
             <Link href="/login" className="text-primary hover:underline">
-              Sign in
+              Entrar
             </Link>
           </p>
         </CardContent>

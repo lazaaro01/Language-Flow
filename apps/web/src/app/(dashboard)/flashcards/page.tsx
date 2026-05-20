@@ -86,19 +86,19 @@ export default function FlashcardsPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-3xl font-bold">Flashcards</h1>
-          <p className="text-muted-foreground">Build your vocabulary with spaced repetition</p>
+          <p className="text-muted-foreground">Construa seu vocabulario com repeticao espacada</p>
         </div>
         <div className="flex gap-2">
           {dueCards && dueCards.length > 0 && mode === 'list' && (
             <Button onClick={startReview} className="gap-2">
-              <RefreshCw className="h-4 w-4" /> Review ({dueCards.length})
+              <RefreshCw className="h-4 w-4" /> Revisar ({dueCards.length})
             </Button>
           )}
           <Button variant="outline" onClick={() => setShowAdd(!showAdd)}>
-            <Plus className="mr-1 h-4 w-4" /> Add Card
+            <Plus className="mr-1 h-4 w-4" /> Adicionar Cartao
           </Button>
         </div>
       </div>
@@ -107,14 +107,14 @@ export default function FlashcardsPage() {
         <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>
           <Card>
             <CardContent className="space-y-4 p-4">
-              <Input placeholder="Word" value={newWord} onChange={(e) => setNewWord(e.target.value)} />
-              <Input placeholder="Definition" value={newDef} onChange={(e) => setNewDef(e.target.value)} />
-              <Input placeholder="Example sentence" value={newExample} onChange={(e) => setNewExample(e.target.value)} />
+              <Input placeholder="Palavra" value={newWord} onChange={(e) => setNewWord(e.target.value)} />
+              <Input placeholder="Definicao" value={newDef} onChange={(e) => setNewDef(e.target.value)} />
+              <Input placeholder="Frase de exemplo" value={newExample} onChange={(e) => setNewExample(e.target.value)} />
               <div className="flex gap-2">
                 <Button onClick={() => createCard.mutate({ word: newWord, definition: newDef, exampleSentence: newExample })} disabled={!newWord || !newDef}>
-                  Save
+                  Salvar
                 </Button>
-                <Button variant="ghost" onClick={() => setShowAdd(false)}>Cancel</Button>
+                <Button variant="ghost" onClick={() => setShowAdd(false)}>Cancelar</Button>
               </div>
             </CardContent>
           </Card>
@@ -122,23 +122,23 @@ export default function FlashcardsPage() {
       )}
 
       {stats && (
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-3 sm:gap-4">
           <Card>
-            <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold">{stats.total}</div>
-              <p className="text-xs text-muted-foreground">Total Cards</p>
+            <CardContent className="p-3 text-center sm:p-4">
+              <div className="text-xl font-bold sm:text-2xl">{stats.total}</div>
+              <p className="text-xs text-muted-foreground">Total de Cartoes</p>
             </CardContent>
           </Card>
           <Card>
-            <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold text-primary">{stats.due}</div>
-              <p className="text-xs text-muted-foreground">Due for Review</p>
+            <CardContent className="p-3 text-center sm:p-4">
+              <div className="text-xl font-bold text-primary sm:text-2xl">{stats.due}</div>
+              <p className="text-xs text-muted-foreground">Pendentes de Revisao</p>
             </CardContent>
           </Card>
           <Card>
-            <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold">{stats.reviewed}</div>
-              <p className="text-xs text-muted-foreground">Total Reviews</p>
+            <CardContent className="p-3 text-center sm:p-4">
+              <div className="text-xl font-bold sm:text-2xl">{stats.reviewed}</div>
+              <p className="text-xs text-muted-foreground">Total de Revisoes</p>
             </CardContent>
           </Card>
         </div>
@@ -154,7 +154,7 @@ export default function FlashcardsPage() {
             className="mx-auto max-w-lg"
           >
             <div className="mb-4 text-center text-sm text-muted-foreground">
-              {reviewIndex + 1} of {dueCards.length}
+              {reviewIndex + 1} de {dueCards.length}
             </div>
             <Progress value={((reviewIndex + 1) / dueCards.length) * 100} className="mb-6" />
 
@@ -173,7 +173,7 @@ export default function FlashcardsPage() {
                   >
                     <div>
                       <h3 className="mb-2 text-3xl font-bold">{dueCards[reviewIndex].word}</h3>
-                      <p className="text-sm text-muted-foreground">Tap to reveal</p>
+                      <p className="text-sm text-muted-foreground">Toque para revelar</p>
                     </div>
                   </motion.div>
                 ) : (
@@ -199,16 +199,16 @@ export default function FlashcardsPage() {
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-6 flex items-center justify-center gap-4"
+                className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4"
               >
-                <Button variant="outline" className="gap-2" onClick={() => handleReview(1)}>
-                  <ThumbsDown className="h-4 w-4" /> Forgot
+                <Button variant="outline" className="w-full gap-2 sm:w-auto" onClick={() => handleReview(1)}>
+                  <ThumbsDown className="h-4 w-4" /> Esqueci
                 </Button>
-                <Button variant="outline" className="gap-2" onClick={() => handleReview(3)}>
-                  <Meh className="h-4 w-4" /> Hard
+                <Button variant="outline" className="w-full gap-2 sm:w-auto" onClick={() => handleReview(3)}>
+                  <Meh className="h-4 w-4" /> Dificil
                 </Button>
-                <Button className="gap-2" onClick={() => handleReview(5)}>
-                  <ThumbsUp className="h-4 w-4" /> Easy
+                <Button className="w-full gap-2 sm:w-auto" onClick={() => handleReview(5)}>
+                  <ThumbsUp className="h-4 w-4" /> Facil
                 </Button>
               </motion.div>
             )}
@@ -221,15 +221,15 @@ export default function FlashcardsPage() {
             className="py-12 text-center"
           >
             <RotateCcw className="mx-auto mb-4 h-12 w-12 text-muted-foreground" />
-            <h3 className="mb-2 text-xl font-bold">All caught up!</h3>
-            <p className="mb-6 text-muted-foreground">No cards due for review</p>
-            <Button onClick={() => setMode('list')}>Back to List</Button>
+            <h3 className="mb-2 text-xl font-bold">Tudo em dia!</h3>
+            <p className="mb-6 text-muted-foreground">Nenhum cartao pendente de revisao</p>
+            <Button onClick={() => setMode('list')}>Voltar a Lista</Button>
           </motion.div>
         ) : (
           <motion.div key="list" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-3">
             {cards?.length === 0 && (
               <div className="py-12 text-center">
-                <p className="text-muted-foreground">No flashcards yet. Add your first one!</p>
+                <p className="text-muted-foreground">Nenhum flashcard ainda. Adicione o primeiro!</p>
               </div>
             )}
             {cards?.map((card) => (

@@ -27,7 +27,7 @@ export class FlashcardsService {
 
   async review(flashcardId: string, quality: number) {
     const card = await this.prisma.flashcard.findUnique({ where: { id: flashcardId } });
-    if (!card) throw new Error('Flashcard not found');
+    if (!card) throw new Error('Flashcard nao encontrado');
 
     let { ease, interval, repetitions } = card;
 

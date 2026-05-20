@@ -14,7 +14,7 @@ export class UsersService {
         achievements: { include: { achievement: true } },
       },
     });
-    if (!user) throw new NotFoundException('User not found');
+    if (!user) throw new NotFoundException('Usuario nao encontrado');
     return user;
   }
 
